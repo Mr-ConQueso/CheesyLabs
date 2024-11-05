@@ -1,6 +1,6 @@
 <div align='center'>
   <a href='https://Helper-Scripts.com' target='_blank' rel='noopener noreferrer'>
-    <img src='https://github.com/Mr-ConQueso/CheesyLabs/blob/main/Proxmox/VM-Notes/Icons/Pterodactyl-Panel.png?raw=true' alt='Home Assistant Icon' width='100' height='90'/>
+    <img src='https://github.com/Mr-ConQueso/CheesyLabs/blob/main/Proxmox/VM-Notes/Icons/Pterodactyl-Panel-128.png?raw=true' alt='Home Assistant Icon' width='100' height='90'/>
   </a>
 
   # Pterodactyl Host Panel
