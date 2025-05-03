@@ -1,6 +1,6 @@
 <div align='center'>
   <a href='https://runtipi.cheesylabs.net' target='_blank' rel='noopener noreferrer'>
-    <img src='https://github.com/Mr-ConQueso/CheesyLabs/blob/main/Proxmox/VM-Notes/Icons/PiHole-128.png?raw=true' alt='PiHole Icon' width='100' height='90'/>
+    <img src='https://github.com/Mr-ConQueso/CheesyLabs/blob/main/Proxmox/VM-Notes/Icons/Runtipi-128.png?raw=true' alt='PiHole Icon' width='100' height='90'/>
   </a>
 
 # Runtipi
