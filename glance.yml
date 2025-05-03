@@ -1,0 +1,216 @@
+theme:
+  background-color: 0 0 16
+  primary-color: 43 59 81
+  positive-color: 61 66 44
+  negative-color: 6 96 59
+pages:
+  - name: Startpage
+    width: slim
+    hide-desktop-navigation: false
+    center-vertically: true
+    columns:
+
+      - size: small
+        widgets:
+          - type: dns-stats
+            service: pihole
+            url: https://pihole.hopki.net
+            token: 12345abcdefghijk
+          - type: custom-api
+            title: Immich stats
+            cache: 1d
+            url: https://immich.hopki.net/api/server/statistics
+            headers:
+              x-api-key: 12345abcdefghijk
+              Accept: application/json
+            template: |
+              <div class="flex justify-between text-center">
+                <div>
+                    <div class="color-highlight size-h3">{{ .JSON.Int "photos" | formatNumber }}</div>
+                    <div class="size-h6">PHOTOS</div>
+                </div>
+                <div>
+                    <div class="color-highlight size-h3">{{ .JSON.Int "videos" | formatNumber }}</div>
+                    <div class="size-h6">VIDEOS</div>
+                </div>
+                <div>
+                    <div class="color-highlight size-h3">{{ div (.JSON.Int "usage" | toFloat) 1073741824 | toInt | formatNumber }}GB</div>
+                    <div class="size-h6">USAGE</div>
+                </div>
+              </div>
+
+          - type: repository
+            repository: TechHutTV/homelab
+            pull-requests-limit: 5
+            issues-limit: 3
+            commits-limit: 3
+
+      - size: full
+        widgets:
+          - type: search
+            autofocus: true
+            search-engine: google
+            new-tab: true
+            bangs:
+              - title: YouTube
+                shortcut: "!yt"
+                url: https://www.youtube.com/results?search_query={QUERY}
+              - title: Github
+                shortcut: "!gh"
+                url: https://github.com/search?q={QUERY}&type=repositories
+
+          - type: monitor
+            cache: 1m
+            title: Services
+            sites:
+              - title: Proxmox
+                url: https://proxmox.cheesylabs.net/
+                check-url: https://192.168.1.5:8006
+                allow-insecure: true
+                icon: di:proxmox
+              - title: Runtipi
+                url: https://runtipi.cheesylabs.net/
+                check-url: http://192.168.1.6:86
+                allow-insecure: true
+                icon: di:runtipi
+              - title: Immich
+                url: https://immich.hopki.net/
+                check-url: http://192.168.1.6:2283
+                icon: di:immich
+              - title: Home Assistant
+                url: https://ha.cheesylabs.net/
+                check-url: http://192.168.1.7:8123
+                icon: di:home-assistant
+              - title: Jellyfin
+                url: https://jellyfin.cheesylabs.net/
+                check-url: http://192.168.1.6:8096
+                icon: di:jellyfin
+
+          - type: monitor
+            cache: 1m
+            title: Network
+            sites:
+              - title: Router
+                url: https://router.cheesylabs.net/
+                check-url: http://192.168.1.1:85
+                allow-insecure: true
+                icon: di:runtipi
+              - title: NGINX Proxy Manager
+                url: https://nginx-proxy.cheesylabs.net/
+                check-url: http://192.168.1.6:81
+                icon: di:nginx
+              - title: Pi-Hole
+                url: https://pihole.hopki.net/admin
+                check-url: http://192.168.1.6:89
+                icon: di:pi-hole
+
+          - type: monitor
+            cache: 1m
+            title: Servarr
+            sites:
+              - title: Overseerr
+                url: https://request.hopki.net
+                check-url: http://192.168.1.202:5055
+                icon: di:overseerr
+              - title: Radarr
+                url: https://arr.hopki.net/radarr
+                check-url: http://192.168.1.100:7878
+                icon: di:radarr
+              - title: Sonarr
+                url: https://arr.hopki.net/sonarr
+                check-url: http://192.168.1.100:8989
+                icon: di:sonarr
+              - title: Lidarr
+                url: https://arr.hopki.net/lidarr
+                check-url: http://192.168.1.100:8686
+                icon: di:lidarr
+              - title: Bazarr
+                url: https://arr.hopki.net/bazarr
+                check-url: http://192.168.1.100:6767
+                icon: di:bazarr
+              - title: Prowlarr
+                url: https://arr.hopki.net/prowlarr
+                check-url: http://192.168.1.100:9696
+                icon: di:prowlarr
+              - title: qBittorrent
+                url: https://torrent.hopki.net/
+                check-url: http://192.168.1.100:8080
+                icon: di:qbittorrent
+              - title: NZBGet
+                url: https://nzbget.hopki.net/
+                check-url: http://192.168.1.100:6789
+                icon: di:nzbget
+                alt-status-codes:
+                  - 401
+                  - 403
+              - title: File Browser
+                url: https://arrfiles.hopki.net/
+                icon: di:filebrowser
+              - title: Portainer
+                url: https://arr.hopki.net/
+                check-url: http://192.168.1.100:80
+                icon: di:portainer
+  - name: Home
+    columns:
+      - size: small
+        widgets:
+          - type: calendar
+
+          - type: rss
+            limit: 10
+            collapse-after: 3
+            cache: 3h
+            feeds:
+              - url: https://ciechanow.ski/atom.xml
+              - url: https://www.joshwcomeau.com/rss.xml
+                title: Josh Comeau
+              - url: https://samwho.dev/rss.xml
+              - url: https://awesomekling.github.io/feed.xml
+              - url: https://ishadeed.com/feed.xml
+                title: Ahmad Shadeed
+
+          - type: twitch-channels
+            channels:
+              - theprimeagen
+              - cohhcarnage
+              - christitustech
+              - blurbs
+              - asmongold
+              - jembawls
+
+      - size: full
+        widgets:
+          - type: hacker-news
+
+          - type: videos
+            channels:
+              - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling
+              - UCv6J_jJa8GJqFwQNgNrMuww # ServeTheHome
+              - UCOk-gHyjcWZNj3Br4oxwh0A # Techno Tim
+
+          - type: reddit
+            subreddit: selfhosted
+
+      - size: small
+        widgets:
+          - type: weather
+            location: London, United Kingdom
+
+          - type: stocks
+            stocks:
+              - symbol: SPY
+                name: S&P 500
+              - symbol: BTC-USD
+                name: Bitcoin
+              - symbol: NVDA
+                name: NVIDIA
+              - symbol: AAPL
+                name: Apple
+              - symbol: MSFT
+                name: Microsoft
+              - symbol: GOOGL
+                name: Google
+              - symbol: AMD
+                name: AMD
+              - symbol: RDDT
+                name: Reddit
